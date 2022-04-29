@@ -5,14 +5,22 @@ import { fetchRnM } from '../services/fetch';
 export default function Main() {
   const [char, setChar] = useState([]);
   const [stat, setStat] = useState('Alive');
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
     const fetchApi = async () => {
       const results = await fetchRnM(stat);
       setChar(results);
+      setLoad(false);
+
+      // setTimeout(() => {
+      //   setLoad(false);
+      // }, 3000);
     };
     fetchApi();
   }, [stat]);
+
+  if (load) return <h1>Loading</h1>;
 
   return (
     <>

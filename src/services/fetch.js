@@ -4,8 +4,9 @@ export async function fetchRnM(setLife) {
 
   const response = await fetch(
     `https://rickandmortyapi.com/api/character/?${status.toString()}`
+    // 'https://rickandmortyapi.com/api/character/1'
   );
   const rickandm = await response.json();
-  console.log(rickandm);
+  // console.log(rickandm);
   return rickandm.results;
 }
