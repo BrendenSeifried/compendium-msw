@@ -23,8 +23,12 @@ export default function Main() {
         {char.map((item) => (
           <article key={item.id}>
             <div>
-              <h1>Name: {item.name}</h1>
-              <p>Status: ({item.status})</p>
+              <h1>
+                Name: {item.name} ({item.status})
+              </h1>
+              <h3>
+                Specifics: {item.gender} {item.species}
+              </h3>
             </div>
           </article>
         ))}
