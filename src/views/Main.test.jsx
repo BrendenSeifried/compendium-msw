@@ -40,39 +40,6 @@ describe('Does this render rick?', () => {
   });
 });
 
-// server.use(
-//   `https://rickandmortyapi.com/api/character/?status=alive`,
-//   (req, res, ctx) => {
-//     res(ctx.json(firstTest));
-//   }
-// ),
-//   server.use(
-//     `https://rickandmortyapi.com/api/character/?status=dead`,
-//     (req, res, ctx) => res(ctx.json(firstTest))
-//   );
-
-// beforeAll(() => server.listen());
-// afterAll(() => server.close());
-
-// describe('behavioural test ', () => {
-//   it('testing the clicks', async () => {
-//     render(<App />);
-//     screen.getByText(/loading/i);
-
-//     screen.debug();
-//     const selectDom = await screen.findByRole('article');
-//     userEvent.click(selectDom);
-
-//     const pickDead = screen.getByText('dead');
-//     userEvent.click(pickDead);
-
-//     const result = await screen.findByText('Name: Adjudicator Rick (Dead)');
-//     expect(result).toBeInTheDocument();
-//   });
-// });
-
-// Adjudicator Rick (Dead)
-
 const secondTest = {
   results: [
     {
@@ -94,11 +61,7 @@ describe('Selector', () => {
 
     await waitFor(
       async () => {
-        userEvent.selectOptions(
-          screen.getByRole('combobox'),
-          'Dead'
-          // screen.getByRole('option', { name: 'testDead' })
-        );
+        userEvent.selectOptions(screen.getByRole('combobox'), 'Dead');
         server.use(
           rest.get(
             `https://rickandmortyapi.com/api/character/?status=dead`,
@@ -106,24 +69,9 @@ describe('Selector', () => {
           )
         );
         const name = await screen.findByText('Name: Adjudicator Rick (Dead)');
-        // const heading = await screen.findByRole('heading');
-        // console.log(name.textContent);
         expect(name).toBeInTheDocument();
       },
-
       { timeout: 3000 }
     );
-    // expect(secondTest.name).toBeInTheDocument();
   });
 });
-
-// it('should allow user to change country', () => {
-//   render(<App />);
-//   userEvent.selectOptions(
-//     // Find the select element
-//     screen.getByRole('combobox'),
-//     // Find and select the Ireland option
-//     screen.getByRole('option', { name: 'Ireland' })
-//   );
-//   expect(screen.getByRole('option', { name: 'Ireland' }).selected).toBe(true);
-// });
